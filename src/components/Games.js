@@ -7,7 +7,7 @@ class Games extends Component {
         this.state = {
             results: []
         }
-        this.handleChange = this.handleChange.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
     }
 
     componentDidMount()
@@ -15,25 +15,34 @@ class Games extends Component {
 
     }
 
-    handleChange()
+    handleKeyPress = (event) =>
     {
-        let search = document.getElementById('search')
-        let term = search.value
-
-        fetch(`https://api.rawg.io/api/games?search=${term}`,
+        if(event.key === 'Enter')
         {
-            headers : {
-                'User-Agent': 'games-list-app / personal use project'
-        }})
-        .then(response => response.json())
-        .then(response => {
-            console.log(response.results)
-            this.setState(
-            {
-                results: response.results
+            let search = document.getElementById('search')
+            let term = search.value
+    
+            this.callBackendAPI(term)
+            .then(response => {
+                this.setState(
+                    {
+                        results: response.results
+                    })
+    
             })
-        })
+        }
     }
+
+    callBackendAPI = async (key_word) => {
+        const response = await fetch(`/rawg/${key_word}`);
+        const body = await response.json();
+
+        if (response.status !== 200) {
+            throw Error(body.message) 
+        }
+        return body;
+    }
+    
 
 
     render()
@@ -42,9 +51,9 @@ class Games extends Component {
 
         return (
             <div id="games">
-                <input type="text" id="search" placeholder="search for a game..."/>
-                <button onClick={this.handleChange}>Search!</button>
-                <ul>{test}</ul>
+                <input type="text" id="search" onKeyPress={this.handleKeyPress} placeholder="search for a game..."/>
+                {/* <button id="search-button" onClick={this.handleClick}>Search!</button> */}
+                <ul id="games-list">{test}</ul>
             </div>
         )
     }
