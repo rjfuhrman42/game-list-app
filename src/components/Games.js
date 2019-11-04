@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import Game from './Game'
 import mag_glass from '../images/white_mag.png'
 
 class Games extends Component {
@@ -48,15 +49,27 @@ class Games extends Component {
 
     render()
     {
-        const test = this.state.results.map(result => <li key={result.id}>{result.name}</li>)
+        const test = this.state.results.map(result =>  <Game key={result.id} data={result}/>)
 
-        return (
+        if(this.state.results.length <= 0)
+        {
+            return (
+                <div id="games">
+                    <div id="search_bar">
+                        <input type="text" id="search" onKeyPress={this.handleKeyPress} placeholder="search for a game..."/>
+                    </div>
+                </div>
+            )
+        }
+        else return (
             <div id="games">
                 <div id="search_bar">
                     <input type="text" id="search" onKeyPress={this.handleKeyPress} placeholder="search for a game..."/>
                 </div>
                 {/* <button id="search-button" onClick={this.handleClick}>Search!</button> */}
-                <ul id="games-list">{test}</ul>
+                <div id="games-list-container">
+                    <ul id="games-list">{test}</ul>
+                </div>
             </div>
         )
     }

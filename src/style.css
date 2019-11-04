@@ -5,7 +5,7 @@ body{
 
 .App{
     margin: 0 auto;
-    width: 50%;
+    width: 100%;
     text-align: center;
 }
 
@@ -19,11 +19,13 @@ body{
     text-align: left;
 }
 
+
 #search_bar{
+    width: 50%;
     border-bottom: 1px solid grey;
     text-align: left;
+    margin: 0 auto;
 }
-
 
 #search-button{
     border-radius: 25px;
@@ -31,11 +33,19 @@ body{
     height: 40px;
 }
 
+#games-list-container{
+    padding: 20px;
+}
+
 #games-list{
-    color: white;
     list-style: none;
+    background: rgb(253, 255, 226);
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 20px;
     font-family: consolas;
-    padding: 0;
+    width: 60%;
+    margin: 0 auto;
+    padding: 10px 0px;
 }
 
 #glass{
@@ -45,7 +55,26 @@ body{
 
 li{
     padding-top: 20px;
+    padding-left: 10px;
     padding-bottom: 10px;
     text-align: left;
-    border-bottom: 0.5px solid white;
+    border-bottom: 0.5px solid rgb(219, 219, 219);
+}
+
+#game-image-container{
+    width: 40%;
+}
+
+#game-name-container{
+    width: 40%;
+}
+
+
+.game-image{
+    width: 200px;
+}
+
+h3, p{
+    display: inline;
+    padding: 20px;
 }
