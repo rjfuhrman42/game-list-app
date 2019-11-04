@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import mag_glass from '../images/white_mag.png'
 
 class Games extends Component {
     constructor()
@@ -12,7 +13,7 @@ class Games extends Component {
 
     componentDidMount()
     {
-
+        
     }
 
     handleKeyPress = (event) =>
@@ -51,7 +52,9 @@ class Games extends Component {
 
         return (
             <div id="games">
-                <input type="text" id="search" onKeyPress={this.handleKeyPress} placeholder="search for a game..."/>
+                <div id="search_bar">
+                    <input type="text" id="search" onKeyPress={this.handleKeyPress} placeholder="search for a game..."/>
+                </div>
                 {/* <button id="search-button" onClick={this.handleClick}>Search!</button> */}
                 <ul id="games-list">{test}</ul>
             </div>
