@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 body{
-    background: black;
-    padding: 10px;
+    background-image: linear-gradient(-90deg, rgb(77, 77, 77), black);
+
 }
 
 .App{
@@ -13,8 +16,8 @@ body{
     width: 70%;
     height: 40px;
     font-size: 24px;
-    color: grey;
-    background: black;
+    color: whitesmoke;
+    background: transparent;
     border: none;
     text-align: left;
 }
@@ -22,9 +25,10 @@ body{
 
 #search_bar{
     width: 50%;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid whitesmoke;
     text-align: left;
     margin: 0 auto;
+    padding-top: 20px;
 }
 
 #search-button{
@@ -34,14 +38,11 @@ body{
 }
 
 #games-list-container{
-    padding: 20px;
+    padding-top: 40px;
 }
 
 #games-list{
     list-style: none;
-    background: rgb(253, 255, 226);
-    border: 1px solid rgb(219, 219, 219);
-    border-radius: 20px;
     font-family: consolas;
     width: 60%;
     margin: 0 auto;
@@ -54,27 +55,30 @@ body{
 }
 
 li{
-    padding-top: 20px;
+    /* padding-top: 20px;
     padding-left: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 10px; */
+
+    height: 140px;
+    margin: 15px;
     text-align: left;
-    border-bottom: 0.5px solid rgb(219, 219, 219);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background: rgb(88, 88, 88);
+    /* border-bottom: 0.5px solid rgb(219, 219, 219); */
 }
-
-#game-image-container{
-    width: 40%;
-}
-
-#game-name-container{
-    width: 40%;
-}
-
 
 .game-image{
-    width: 200px;
+    width: 250px;
+    height: 140px;
 }
 
-h3, p{
+h4, p{
     display: inline;
     padding: 20px;
+}
+
+
+.w3-button{
+    float: right;
 }

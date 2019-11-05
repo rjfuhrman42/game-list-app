@@ -9,8 +9,9 @@ function Game(props)
         <li>
             <span id="game-image-container">
                 <img className="game-image" alt="game preview" src={background_image}></img>
-                <h3>{name}</h3>
+                <h4>{name}</h4>
                 {/* <p>{rating}/5</p> */}
+                <button className="w3-button w3-xlarge w3-black">+ add to list</button>
             </span>
         </li>
     )
