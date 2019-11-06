@@ -1,5 +1,6 @@
 import React, {Component} from "react"
-import Game from './Game'
+import SearchBar from './SearchBar'
+import GamesList from './GamesList'
 import mag_glass from '../images/white_mag.png'
 
 class Games extends Component {
@@ -7,14 +8,22 @@ class Games extends Component {
     {
         super()
         this.state = {
-            results: []
+            results: [],
+            list: {},
+            currPage: "search"
         }
         this.handleKeyPress = this.handleKeyPress.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     componentDidMount()
     {
-        
+        console.log('mounted!')
+        fetch('/api')
+        .then(response => response.json())
+        .then(response => {
+            this.setState({list: response})
+        })
     }
 
     handleKeyPress = (event) =>
@@ -35,6 +44,15 @@ class Games extends Component {
         }
     }
 
+    handleClick()
+    {
+        if(this.state.currPage === "search")
+        {
+            this.setState({currPage: "list"})
+        }
+        else this.setState({currPage: "search"})
+    }
+
     callBackendAPI = async (key_word) => {
         const response = await fetch(`/rawg/${key_word}`);
         const body = await response.json();
@@ -44,35 +62,51 @@ class Games extends Component {
         }
         return body;
     }
+
+    // loadData = async () => {
+    //     const response = await fetch('/api');
+    //     const body = await response.json();
+
+    //     if (response.status !== 200) {
+    //         throw Error(body.message) 
+    //     }
+    //     return body;
+    // }
     
 
 
     render()
     {
-        const test = this.state.results.map(result =>  <Game key={result.id} data={result}/>)
-
-        if(this.state.results.length <= 0)
+        
+        console.log(this.state.list)
+        if(this.state.currPage === "list")
         {
-            return (
+            return(
                 <div id="games">
-                    <div id="search_bar">
-                        <input type="text" id="search" onKeyPress={this.handleKeyPress} placeholder="search for a game..."/>
-                    </div>
+                    <button className="list-button" onClick={this.handleClick}>Search for games</button>
+                    <h1>Hey it works!</h1>
                 </div>
             )
         }
-        else return (
-            <div id="games">
-                <div id="search_bar">
-                    <input type="text" id="search" onKeyPress={this.handleKeyPress} placeholder="search for a game..."/>
-                </div>
-                {/* <button id="search-button" onClick={this.handleClick}>Search!</button> */}
-                <div id="games-list-container">
-                    <ul id="games-list">{test}</ul>
-                </div>
-            </div>
-        )
-    }
+        else{     
+            if(this.state.results.length <= 0)
+            {
+                return (
+                    <div id="games">
+                        <button className="list-button" onClick={this.handleClick}>View my list!</button>
+                        <SearchBar handlePress={this.handleKeyPress}/>
+                    </div>
+                )
+            }
+            else return (
+                    <div id="games">
+                        <button className="list-button" onClick={this.handleClick}>View my list!</button>
+                        <SearchBar handlePress={this.handleKeyPress}/>
+                        <GamesList data={this.state.results}/>
+                    </div>
+            )
+        }
+        }
 }
 
 export default Games
