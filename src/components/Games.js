@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import SearchBar from './SearchBar'
 import GamesList from './GamesList'
-import mag_glass from '../images/white_mag.png'
 
 class Games extends Component {
     constructor()
@@ -9,9 +8,10 @@ class Games extends Component {
         super()
         this.state = {
             results: [],
-            list: {},
-            currPage: "search"
+            list: [],
+            currPage: "list"
         }
+
         this.handleKeyPress = this.handleKeyPress.bind(this)
         this.handleClick = this.handleClick.bind(this)
     }
@@ -19,8 +19,7 @@ class Games extends Component {
     componentDidMount()
     {
         console.log('mounted!')
-        fetch('/api')
-        .then(response => response.json())
+        const response = this.loadData()
         .then(response => {
             this.setState({list: response})
         })
@@ -47,8 +46,13 @@ class Games extends Component {
     handleClick()
     {
         if(this.state.currPage === "search")
-        {
-            this.setState({currPage: "list"})
+        {   
+            console.log('mounted!')
+            const data = this.loadData()
+            .then(data => {
+                this.setState({list: data,
+                            currPage: "list"})
+            })
         }
         else this.setState({currPage: "search"})
     }
@@ -63,28 +67,27 @@ class Games extends Component {
         return body;
     }
 
-    // loadData = async () => {
-    //     const response = await fetch('/api');
-    //     const body = await response.json();
+    loadData = async () => {
+        const response = await  fetch('/api');
+        const body = await response.json();
 
-    //     if (response.status !== 200) {
-    //         throw Error(body.message) 
-    //     }
-    //     return body;
-    // }
-    
+        if (response.status !== 200) {
+            throw Error(body.message) 
+        }
+        return body;
+    }
 
 
     render()
-    {
-        
-        console.log(this.state.list)
-        if(this.state.currPage === "list")
+    {  
+        const {currPage, results, list} = this.state
+
+        if(currPage === "list")
         {
             return(
                 <div id="games">
-                    <button className="list-button" onClick={this.handleClick}>Search for games</button>
-                    <h1>Hey it works!</h1>
+                    <button className="list-button" onClick={this.handleClick}>Search for games</button><br></br>
+                    <GamesList type={currPage} data={list}/>
                 </div>
             )
         }
@@ -102,11 +105,11 @@ class Games extends Component {
                     <div id="games">
                         <button className="list-button" onClick={this.handleClick}>View my list!</button>
                         <SearchBar handlePress={this.handleKeyPress}/>
-                        <GamesList data={this.state.results}/>
+                        <GamesList type={currPage} data={results}/>
                     </div>
             )
         }
-        }
+    }
 }
 
 export default Games

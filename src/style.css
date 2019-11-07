@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-body{
-    background-image: linear-gradient(-90deg, rgb(77, 77, 77), black);
-
+body, html{
+    background-image: linear-gradient(-91deg, rgb(77, 77, 77), black);
 }
 
 .App{
@@ -54,26 +53,36 @@ body{
     margin: 0;
 }
 
-li{
-    /* padding-top: 20px;
-    padding-left: 10px;
-    padding-bottom: 10px; */
 
-    height: 140px;
-    margin: 15px;
+.list-item, .list-item > img{
+    height: 120px;
     text-align: left;
     color: white;
     font-family: 'Roboto', sans-serif;
     background: rgb(88, 88, 88);
-    border-radius: 20px;
+}
+
+.list-item:nth-child(odd)
+{
+    background: rgb(110, 110, 110);
+}
+
+.game{
+    height: 140px;
+    margin: 10px;
+    text-align: left;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background: rgb(88, 88, 88);
+    /* border-radius: 20px; */
     /* border-bottom: 0.5px solid rgb(219, 219, 219); */
 }
 
 .game-image{
     width: 250px;
     height: 140px;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+    /* border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px; */
     float: left;
 }
 
@@ -89,7 +98,7 @@ h4, p{
     padding: 10px;
     background: black;
     color: white;
-    border-top-right-radius: 20px;
+    /* border-top-right-radius: 20px; */
 }
 
 

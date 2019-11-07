@@ -1,13 +1,23 @@
 import React from "react"
 import Game from "./Game"
+import ListItem from "./ListItem";
 
 function GamesList (props)
-{
-    const test = props.data.map(result =>  <Game key={result.id} data={result}/>)
+{   
+    let games;
+
+    if(props.type === "search")
+    {
+        games = props.data.map(result =>  <Game key={result.id} data={result}/>) // search item
+    } 
+    else if(props.type === "list")
+    {
+        games = props.data.map(item =>  <ListItem key={item.id} data={item}/>)  // list item
+    }
 
     return(
         <div id="games-list-container">
-            <ul id="games-list">{test}</ul>
+            <ul id="games-list">{games}</ul>
         </div>
     )
 }

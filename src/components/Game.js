@@ -6,11 +6,10 @@ class Game extends Component
     constructor(props)
     {
         super(props);
-        const {name, background_image, rating} = this.props.data
+        const {name, background_image} = this.props.data
         this.state = {
                 name: name,
                 image: background_image,
-                rating: rating,
                 inList: "+ add to list"
         }
         this.handleClick = this.handleClick.bind(this)
@@ -41,10 +40,10 @@ class Game extends Component
 
     render()
     {
-        const {name, image, rating, inList} = this.state
+        const {name, image, inList} = this.state
 
         return(
-            <li>
+            <li className="game">
                     <img className="game-image" alt="game preview" src={image}></img>
                     <button className="w3-button" onClick={this.handleClick}>{inList}</button>
                      <h4>{name}</h4>
