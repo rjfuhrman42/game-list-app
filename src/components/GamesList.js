@@ -12,7 +12,7 @@ function GamesList (props)
     } 
     else if(props.type === "list")
     {
-        games = props.data.map(item =>  <ListItem key={item.id} data={item}/>)  // list item
+        games = props.data.map(item =>  <ListItem key={item._id} edit={props.edit} data={item}/>)  // list item
     }
 
     return(

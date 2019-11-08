@@ -8,17 +8,25 @@ class ListItem extends Component
         this.state = {
             image: props.data.image,
             name: props.data.name,
+            editing: false,
+            active: false
         }
+
     }
+
 
     render()
     {
-        const {image, name} = this.state
+        const {name, editing, active, image} = this.state
+        //const isEditing = editing ? "list-item-editing" : "list-item"
+        const isActive = active ? "list-item-active" : "list-item"
+        const buttonText = editing ? "Save" : "Edit +"
+
+        console.log(editing)
         return(
-            <li className="list-item">
-                <img className="game-image" alt="game preview" src={image}></img>
-                {/* <button className="w3-button" onClick={this.handleClick}>{inList}</button> */}
-                <h4>{name}</h4>
+            <li className={isActive}>
+                <button className="edit-button" onClick={() => this.setState({editing: !this.state.editing})}>{buttonText}</button>
+                <h4 onClick={() => this.setState({active: !this.state.active})}>{name}</h4>
                 {/* <p>{rating}/5</p> */}
                 {/* <a href="https://rawg.io" className="image-attribution">RAWG.io</a> */}
             </li>

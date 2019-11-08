@@ -55,18 +55,28 @@ body, html{
 
 
 .list-item, .list-item > img{
-    height: 120px;
+    height: 5em;
     text-align: left;
     color: white;
     font-family: 'Roboto', sans-serif;
-    background: rgb(88, 88, 88);
+    background: rgb(44, 44, 44);
+    transition: height 450ms ;
 }
 
-.list-item:nth-child(odd)
+.list-item:nth-child(odd), .list-item-active:nth-child(odd)
 {
-    background: rgb(110, 110, 110);
+    background: rgb(53, 53, 53);
 }
 
+.list-item-active
+{
+    height: 20em;
+    background: rgb(44, 44, 44);
+    color: white;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    transition: height 450ms ;
+}
 .game{
     height: 140px;
     margin: 10px;
@@ -74,6 +84,27 @@ body, html{
     color: white;
     font-family: 'Roboto', sans-serif;
     background: rgb(88, 88, 88);
+    transition: transform 450ms, margin 450ms, background-color 450ms, color 450ms ;
+    /* border-radius: 20px; */
+    /* border-bottom: 0.5px solid rgb(219, 219, 219); */
+}
+
+#attribution{
+    text-decoration: none;
+    color: white;
+}
+
+#attribution:hover{
+    text-decoration: none;
+    color: black;
+}
+
+
+.game:hover{
+    color: black;
+    margin: 22px;
+    transform: scale(1.2);
+    background-color: grey;
     /* border-radius: 20px; */
     /* border-bottom: 0.5px solid rgb(219, 219, 219); */
 }
@@ -89,6 +120,7 @@ body, html{
 h4, p{
     display: inline-block;
     padding-left: 2em;
+    cursor: pointer;
 }
 
 
@@ -100,6 +132,16 @@ h4, p{
     color: white;
     /* border-top-right-radius: 20px; */
 }
+
+.edit-button{
+    float: right;
+    border: none;
+    padding: 10px;
+    background: none;
+    color: white;
+    /* border-top-right-radius: 20px; */
+}
+
 
 
 .list-button{
@@ -113,5 +155,10 @@ h4, p{
 
 .w3-button:hover, .list-button:hover{
     background: green;
+    cursor: pointer;
+}
+
+.edit-button:hover{
+    color: cyan;
     cursor: pointer;
 }
