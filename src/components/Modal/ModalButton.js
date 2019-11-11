@@ -10,34 +10,29 @@ function ModalButton(props) {
   return (
     <ButtonToolbar>
       <Button variant="primary" onClick={() => setModalShow(true)}>
-        Add to List +
+        {props.does}
       </Button>
 
       <MyVerticallyCenteredModal
         show={modalShow}
-        onHide={(data) => {setModalShow(false)
-                           changeState(data)
-                          const options = {
-                          method: 'POST',
-                          headers: {
-                                  'Content-Type': 'application/json'
-                          },
-                          body: JSON.stringify(props.data)
-                      }
-                      saveData(options)
+        onHide={() => setModalShow(false)}
+
+        onSubmit={(data) => {
+                            setModalShow(false)
+                            changeState(data)    
+                            const options = {
+                            method: 'POST',
+                            headers: {
+                                    'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(props.data)
+                        }
+                        props.onSubmit(options)
 }}
         data={props.data}
       />
     </ButtonToolbar>
   );
 }
-
-async function saveData(options){
-    console.log(options.body)
-    const response = await fetch('/api', options)
-    const data = await response.json();
-    console.log(data)
-}
-
 
 export default ModalButton

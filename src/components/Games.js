@@ -9,7 +9,7 @@ class Games extends Component {
         this.state = {
             results: [],
             list: [],
-            currPage: "search"
+            currPage: "list"
         }
 
         this.handleKeyPress = this.handleKeyPress.bind(this)

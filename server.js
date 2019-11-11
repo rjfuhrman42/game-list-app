@@ -44,3 +44,11 @@ app.post('/api', (request, response) => {
     database.insert(data);
     response.json(data);
 })
+
+app.post('/api/:name-:rating', (request, response) => {
+    const data = request.body
+    const {name, rating} = request.params;
+    console.log(name)
+    database.update({ name: name }, { $set: { userRating: rating }})
+    response.json(data);
+})
