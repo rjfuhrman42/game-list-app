@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import ModalButton from "./Modal/ModalButton"
 
 class Game extends Component
 {
@@ -45,9 +46,9 @@ class Game extends Component
         return(
             <li className="game">
                     <img className="game-image" alt="game preview" src={image}></img>
-                    <button className="w3-button" onClick={this.handleClick}>{inList}</button>
+                    {/* <button className="w3-button" onClick={this.handleClick}>{inList}</button> */}
                      <h4><a id="attribution"  target="_blank" href={'https://rawg.io/games/' + this.props.data.slug}>{name}</a></h4>
-                     
+                     <ModalButton data={this.state}/>
                     {/* <p>{rating}/5</p> */}
                     {/* <a href="https://rawg.io" className="image-attribution">RAWG.io</a> */}
             </li>

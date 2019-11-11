@@ -8,6 +8,7 @@ class ListItem extends Component
         this.state = {
             image: props.data.image,
             name: props.data.name,
+            rating: props.data.userRating,
             editing: false,
             active: false
         }
@@ -17,7 +18,7 @@ class ListItem extends Component
 
     render()
     {
-        const {name, editing, active, image} = this.state
+        const {name, editing, active, image, rating} = this.state
         //const isEditing = editing ? "list-item-editing" : "list-item"
         const isActive = active ? "list-item-active" : "list-item"
         const buttonText = editing ? "Save" : "Edit +"
@@ -27,7 +28,7 @@ class ListItem extends Component
             <li className={isActive}>
                 <button className="edit-button" onClick={() => this.setState({editing: !this.state.editing})}>{buttonText}</button>
                 <h4 onClick={() => this.setState({active: !this.state.active})}>{name}</h4>
-                {/* <p>{rating}/5</p> */}
+                <p>Rating: {rating}/5</p>
                 {/* <a href="https://rawg.io" className="image-attribution">RAWG.io</a> */}
             </li>
         )
