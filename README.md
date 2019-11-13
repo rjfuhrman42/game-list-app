@@ -4,6 +4,10 @@ Search for games through the RAWG.io API, and add the ones you've played to a li
 
 ![image](/public/screenshots/preview_gif.gif?raw=true "Preview")
 
+### `node server.js`
+
+Starts the server by the app calls to.
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
