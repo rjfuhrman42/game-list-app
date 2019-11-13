@@ -6,7 +6,7 @@ Search for games through the RAWG.io API, and add the ones you've played to a li
 
 ### `node server.js`
 
-Starts the server by the app calls to.
+Starts the server which handles API calls and database queries.
 
 ### `npm start`
 
