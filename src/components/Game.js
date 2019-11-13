@@ -17,9 +17,23 @@ class Game extends Component
         this.handleClick = this.handleClick.bind(this)
     }
     
+    componentDidMount()
+    {
+        fetch(`/api/${this.state.name}`)                // call our database, check if this name is in our database
+        .then(response => response.json())
+        .then(response => {
+            console.log(response.hasOwnProperty([0]))   
+            if(response.hasOwnProperty([0]))         // If the array has SOMETHING,then by the way our database works this means that it exists in the list
+                            {
+                                this.setState({inList: "in list"})
+                }
+            });
+    }
 
     handleClick()
     {
+        console.log("worked!")
+        this.setState({inList: "added!"})
         const options = {
             method: 'POST',
             headers: {
@@ -30,16 +44,19 @@ class Game extends Component
 
         this.saveData(options)
 
-        this.setState({inList: "added"})
     }
+
 
     saveData = async (options) =>{
-        console.log(options.body)
-        const response = await fetch('/api', options)
-        const data = await response.json();
-        console.log(data)
+        console.log("savedata!")
+        this.setState({inList: "added"})
+        let data = options.body
+        let jsn = JSON.parse(data);
+        console.log(jsn)
+        const response = await fetch(`/api/${jsn.name}`, options)
+        const data2 = await response.json();
+        console.log(data2)
     }
-
     render()
     {
         const {name, image, inList} = this.state

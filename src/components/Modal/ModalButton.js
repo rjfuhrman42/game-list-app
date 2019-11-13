@@ -9,7 +9,13 @@ function ModalButton(props) {
 
   return (
     <ButtonToolbar>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button variant="primary" onClick={() => 
+        {
+          if(props.does === "in list")
+          {
+          }
+          else setModalShow(true)
+        }}>
         {props.does}
       </Button>
 

@@ -21,6 +21,15 @@ app.get('/api', (request, response) => {
     })
 })
 
+app.get('/api/:name', (request, response) => {
+    console.log("requested!");
+    const {name} = request.params;
+    database.find({name: name}, (err, data) => {
+        if (err) throw err
+        response.json(data);
+    })
+})
+
 app.get('/rawg/:term', async (request, response) => {
 
     const {term} = request.params;
@@ -38,14 +47,22 @@ app.get('/rawg/:term', async (request, response) => {
 })
 
 
-app.post('/api', (request, response) => {
+app.post('/api/:name', (request, response) => {
     const data = request.body
-    console.log(request.body)
-    database.insert(data);
+    const {name} = request.params;
+    console.log("we're")
+    database.find({name: name}, function (err, docs){
+
+        if(docs[0] === undefined) // if the game is not in the database, add it
+        {
+            database.insert(data);
+        }
+        else console.log("game already added!");
+    })
     response.json(data);
 })
 
-app.post('/api/:name-:rating', (request, response) => {
+app.post('/edit/:name/:rating', (request, response) => {
     const data = request.body
     const {name, rating} = request.params;
     console.log(name)

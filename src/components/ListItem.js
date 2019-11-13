@@ -16,12 +16,13 @@ class ListItem extends Component
 
     }
 
+
     updateData = async (options) =>{
 
         let data = options.body
         let jsn = JSON.parse(data);
         console.log(jsn)
-        const response = await fetch(`/api/${jsn.name}-${jsn.userRating}`, options)
+        const response = await fetch(`/edit/${jsn.name}/${jsn.userRating}`, options)
         const data2 = await response.json();
         document.location.reload(true)  
         console.log(data2)
