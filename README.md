@@ -2,7 +2,7 @@
 
 Search for games through the RAWG.io API, and add the ones you've played to a list to keep track!
 
-
+![image](/public/screenshots/preview_gif.gif?raw=true "Preview")
 
 ### `npm start`
 
