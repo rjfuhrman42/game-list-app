@@ -4,6 +4,10 @@ Search for games through the RAWG.io API, and add the ones you've played to a li
 
 ![image](/public/screenshots/preview_gif.gif?raw=true "Preview")
 
+### To run this app
+
+Clone the files onto your PC then run `npm install` to install the required dependencies.
+
 ### `node server.js`
 
 Starts the server which handles API calls and database queries.
